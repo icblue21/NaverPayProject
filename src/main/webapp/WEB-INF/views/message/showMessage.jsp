@@ -1,6 +1,6 @@
 <%@ page import="java.io.PrintWriter" %>
 <%@ page import="java.io.IOException" %>
-<%@ page import="org.example.overview.utils.Status" %>
+<%@ page import="org.example.naverpay.util.Status" %>
 <%!
     public void showMessage(HttpServletRequest request, HttpServletResponse response, String attributeName, Status status) throws IOException {
         HttpSession session = request.getSession();
