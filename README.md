@@ -5,7 +5,7 @@
 > ```자세한 공지사항은 프로젝트 설명서 확인```
 
 
-- [프로젝트 설명서](https://echoiing-fastcampus-backend.notion.site/2-Naver-Pay-bfae0ebca18a4c20a352e63e00289fc1)
+- [프로젝트 설명서](https://echoiing-fastcampus.notion.site/2-Naver-Pay-bfae0ebca18a4c20a352e63e00289fc1)
       
 - 제출방법
     - 조 번호 이름으로 ````branch````를 생성하여 ````push````후 ````pull request```` 작성
