@@ -1,10 +1,9 @@
-<%@ page import="java.time.LocalDateTime" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>INDEX</title>
+    <title>HOME</title>
     <link rel="stylesheet" href="/resources/css/style.css">
 </head>
 <body>
@@ -18,18 +17,12 @@
 %>
 
 <main>
+    <h1>Naver Pay Home</h1>
     <h1>Hello ${uId}!</h1>
 
-    <h2>Current Time - ${now}</h2>
-    <h2>Server Time - ${serverTime}</h2>
-
-    <%
-        LocalDateTime now = null;
-        if (request.getAttribute("now") != null) {
-            now = (LocalDateTime) request.getAttribute("now");
-        }
-    %>
-    <h2>Current Time - <%=now%></h2>
+    <ul class="main__nav__next">
+        <li>👉🏻<a href="members/login"><b> Login 하기</b></a></li>
+    </ul>
 </main>
 <footer><jsp:include page="layout/footer.jsp"/></footer>
 </body>

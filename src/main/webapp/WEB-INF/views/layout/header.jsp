@@ -39,16 +39,33 @@
 <header class="header">
     <div class="header__logo">
         <!-- inline 구조여서 수직적 중앙이 맞지 않음 -->
+        <%
+            if (session.getAttribute("SESSION_ID") != null) { %>
+        <a href="/members/firstpage"><i class="fas fa-camera"></i></a>
+        <a href="/members/firstpage">nPay</a>
+        <%
+        } else { %>
         <a href="/"><i class="fas fa-camera"></i></a>
-        <a href="/">Sallys</a>
+        <a href="/">nPay</a>
+        <%
+            }
+        %>
     </div>
 
 
     <ul class="header__nav">
         <!-- block 구조여서 수직적 중앙이 맞음 -->
+        <%
+            if (session.getAttribute("SESSION_ID") != null) { %>
+        <li><a href="/members/firstpage">Home</a></li>
+        <li><a href="/members/shopping">결제 내역</a></li>
+        <%
+        } else { %>
         <li><a href="/">Home</a></li>
-        <li><a href="/members/search">Search</a></li>
-        <li><a href="/members/survey">Survey</a></li>
+        <li><a href="/">결제 내역</a></li>
+        <%
+            }
+        %>
     </ul>
 
     <ul class="header__icons">
