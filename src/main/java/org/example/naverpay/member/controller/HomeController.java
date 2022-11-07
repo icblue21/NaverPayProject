@@ -9,32 +9,27 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.time.LocalDateTime;
 import java.util.Locale;
 
 @Controller
-public class IndexController {
+public class HomeController { // 비 로그인 상태 홈 화면
 
     private SessionMgr sessionMgr; //= SessionMgr.getInstance();
 
     @Autowired
-    public IndexController(SessionMgr sessionMgr) {
+    public HomeController(SessionMgr sessionMgr) {
         this.sessionMgr = sessionMgr;
     }
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String indexPage(Locale locale, Model model, HttpServletRequest request, HttpSession session) {
+    public String homePage(Locale locale, Model model, HttpServletRequest request, HttpSession session) {
 
-        LocalDateTime localDateTime = LocalDateTime.now();
-
-        model.addAttribute("now", localDateTime);
-        request.setAttribute("now", localDateTime);
 
         if (session.getAttribute("SESSION_ID") != null) {
-            model.addAttribute("uId", sessionMgr.get(session));
+            model.addAttribute("mId", sessionMgr.get(session));
         }
 
-        return "index";
+        return "home";
     }
 
 }
