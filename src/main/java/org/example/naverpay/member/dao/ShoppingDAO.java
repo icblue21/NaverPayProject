@@ -23,7 +23,7 @@ public class ShoppingDAO implements iShoppingDAO{
     private ResultSet rs = null;
 
     private static final String SHOPPING_SELECT = "select * from shopping where sId = ?";
-    private static final String ALL_SHOPPING_LIST = "select * from shopping where mId = ? and sDate >= ? and sDate <= ?";
+    private static final String ALL_SHOPPING_LIST = "select * from shopping where mId = ? and sDate >= ? and sDate <= ? ORDER BY sDate DESC";
     private static final String SHOPPING_DELETE = "delete shopping where sId = ?";
 
     public static ShoppingDAO getInstance() {
