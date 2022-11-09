@@ -17,7 +17,7 @@ public class PaymentService implements iPaymentService{
     private SessionMgr sessionMgr;
     private ShoppingDAO shoppingDAO;
     private PaymentDAO paymentDAO;
-
+    @Autowired
     public PaymentService(SessionMgr sessionMgr, ShoppingDAO shoppingDAO, PaymentDAO paymentDAO) {
         this.sessionMgr = sessionMgr;
         this.shoppingDAO = shoppingDAO;

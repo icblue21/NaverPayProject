@@ -13,8 +13,6 @@ import java.sql.SQLException;
 @Repository
 public class MembersDAO implements iMembersDAO{
 
-    private static MembersDAO membersDAO = null;
-
     private Connection conn = null;
 
     private PreparedStatement stmt = null;
@@ -28,13 +26,6 @@ public class MembersDAO implements iMembersDAO{
     private static final String MEMBER_PASSWORD_UPDATE = "update members set mPw = ? where mId = ?";
     private static final String MEMBER_DELETE = "delete members where mId = ?";
     private static final String MEMBER_DELETE_ALL = "delete members";
-
-    public static MembersDAO getInstance() {
-        if (membersDAO == null) {
-            membersDAO = new MembersDAO();
-        }
-        return membersDAO;
-    }
 
     @Override
     public Members select(String uId) {

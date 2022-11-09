@@ -14,7 +14,7 @@ import java.util.Locale;
 @Controller
 public class HomeController { // 비 로그인 상태 홈 화면
 
-    private SessionMgr sessionMgr; //= SessionMgr.getInstance();
+    private SessionMgr sessionMgr;
 
     @Autowired
     public HomeController(SessionMgr sessionMgr) {

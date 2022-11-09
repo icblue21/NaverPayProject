@@ -23,13 +23,13 @@ public class LoginController { // 로그인 화면
 
     private SessionMgr sessionMgr; // = SessionMgr.getInstance();
     private CookieMgr cookieMgr; // = CookieMgr.getInstance();
-    private MembersService membersService = MembersService.getInstance();
-
+    private MembersService membersService;
 
     @Autowired
-    public LoginController(SessionMgr sessionMgr, CookieMgr cookieMgr) {
+    public LoginController(SessionMgr sessionMgr, CookieMgr cookieMgr, MembersService membersService) {
         this.sessionMgr = sessionMgr;
         this.cookieMgr = cookieMgr;
+        this.membersService = membersService;
     }
 
     @GetMapping("/login")

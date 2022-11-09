@@ -23,12 +23,13 @@ import java.util.Locale;
 @RequestMapping("/members")
 public class ShoppingController {
 
-    private SessionMgr sessionMgr = SessionMgr.getInstance();
-
-    private ShoppingService shoppingService = ShoppingService.getInstance();
-
+    private SessionMgr sessionMgr;
+    private ShoppingService shoppingService;
     @Autowired
-    public ShoppingController(SessionMgr sessionMgr){ this.sessionMgr = sessionMgr; }
+    public ShoppingController(SessionMgr sessionMgr, ShoppingService shoppingService) {
+        this.sessionMgr = sessionMgr;
+        this.shoppingService = shoppingService;
+    }
 
     @GetMapping(value = "/shopping") // 결제 내역 화면 접근
     public String shoppingPage(Locale locale, Model model, HttpServletRequest request, HttpSession session) {

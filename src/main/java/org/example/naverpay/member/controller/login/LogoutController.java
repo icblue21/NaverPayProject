@@ -18,8 +18,8 @@ import javax.servlet.http.HttpSession;
 @RequestMapping("/members")
 public class LogoutController { // 로그아웃 컨트롤러
 
-    private SessionMgr sessionMgr; // = SessionMgr.getInstance();
-    private CookieMgr cookieMgr; // = CookieMgr.getInstance();
+    private SessionMgr sessionMgr;
+    private CookieMgr cookieMgr;
 
 
     @Autowired
