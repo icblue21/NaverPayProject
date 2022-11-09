@@ -21,8 +21,8 @@ import javax.servlet.http.HttpSession;
 @RequestMapping("/members")
 public class LoginController { // 로그인 화면
 
-    private SessionMgr sessionMgr; // = SessionMgr.getInstance();
-    private CookieMgr cookieMgr; // = CookieMgr.getInstance();
+    private SessionMgr sessionMgr;
+    private CookieMgr cookieMgr;
     private MembersService membersService;
 
     @Autowired

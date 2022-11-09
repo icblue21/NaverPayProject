@@ -3,6 +3,7 @@ package org.example.naverpay.member.service;
 import org.example.naverpay.member.dao.PaymentDAO;
 import org.example.naverpay.member.dao.ShoppingDAO;
 import org.example.naverpay.member.dto.PaymentDTO;
+import org.example.naverpay.member.dto.ShoppingDTO;
 import org.example.naverpay.member.entity.Payment;
 import org.example.naverpay.member.entity.Shopping;
 import org.example.naverpay.session.SessionMgr;
@@ -27,26 +28,34 @@ public class PaymentService implements iPaymentService{
     @Override
     public boolean isLogin(HttpSession session) {  //로그인 여부 판단
         if (session.getAttribute("SESSION_ID") == null) {
-            return false;
+            return true;
         }
-        return true;
+        return false;
     }
 
     @Override
     public boolean isPurchaseHistory(String sId) { //구매내역이 있는지 확인
         if(sId.equals("")){
-            return false;
+            return true;
         }
         Shopping shopping = shoppingDAO.select(sId);
         if (shopping == null){
-            return false;
+            return true;
         }
-        return true;
+        return false;
     }
 
     @Override
     public PaymentDTO orderStatus(String sId) {
         Payment payment = paymentDAO.select(sId);
         return payment.toDTO();
+    }
+
+    @Override
+    public boolean isYourProduct(HttpSession session, ShoppingDTO shoppingDTO) {
+        if(session.getAttribute("SESSION_ID").equals(shoppingDTO.getmId())){
+            return false;
+        }
+        return true;
     }
 }
