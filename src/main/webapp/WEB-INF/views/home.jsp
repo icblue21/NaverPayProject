@@ -24,6 +24,5 @@
         <li>👉🏻<a href="/login"><b> Login 하기</b></a></li>
     </ul>
 </main>
-<footer><jsp:include page="layout/footer.jsp"/></footer>
 </body>
 </html>
