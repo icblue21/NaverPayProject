@@ -21,13 +21,7 @@ public class MembersDAO implements iMembersDAO{
 
     private ResultSet rs = null;
 
-    private static final String MEMBER_SEARCH = "select * from members where mId like ? or uEmail like ?";
-    private static final String MEMBER_SELECT_ALL = "select * from members";
     private static final String MEMBER_SELECT = "select * from members where mId = ?";
-    private static final String MEMBER_INSERT = "insert into members values(?, ?, ?)";
-    private static final String MEMBER_PASSWORD_UPDATE = "update members set mPw = ? where mId = ?";
-    private static final String MEMBER_DELETE = "delete members where mId = ?";
-    private static final String MEMBER_DELETE_ALL = "delete members";
 
     public static MembersDAO getInstance() {
         if (membersDAO == null) {
