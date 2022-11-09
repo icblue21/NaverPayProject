@@ -20,7 +20,7 @@
 <main>
     <h1>Shopping List</h1>
     <div>
-        <form method="post" action="/members/shopping">
+        <form method="post" action="/naver/pay">
             <div class="form__list">
                 <label for="startDate">START DATE </label>
                 <input type="text" id="startDate" name="startDate" placeholder="yyyy.mm.dd" required/>
@@ -35,7 +35,7 @@
     </div>
     <div>
         <c:forEach var="shoppingListDTO" items="${shoppingList}">
-            <a href="/members/shoppingDetail?sId=${shoppingListDTO.sId}"> "${shoppingListDTO.show()}" </a>
+            <a href="/naver/pay/detail?sId=${shoppingListDTO.sId}"> "${shoppingListDTO.show()}" </a>
             <li> </li>
         </c:forEach>
     </div>

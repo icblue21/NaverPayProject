@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.Locale;
 
 @Controller
-@RequestMapping("/members")
+@RequestMapping("/naver")
 public class ShoppingDetailController {
 
     private SessionMgr sessionMgr = SessionMgr.getInstance();
@@ -33,7 +33,7 @@ public class ShoppingDetailController {
     public ShoppingDetailController(SessionMgr sessionMgr){ this.sessionMgr = sessionMgr; }
 
 
-    @GetMapping(value = "/shoppingDetail") // 결제 내역 화면 접근
+    @GetMapping(value = "/pay/detail") // 결제 내역 화면 접근
     public String shoppingPage(Locale locale, Model model, HttpServletRequest request, HttpSession session,
     @RequestParam("sId") String sId) {
 
@@ -50,7 +50,7 @@ public class ShoppingDetailController {
 
         return "/member/login/shoppingDetail";
     }
-    @PostMapping(value = "/shoppingDetail")
+    @PostMapping(value = "/pay/detail")
     public String deleteShoppingList(Locale locale, Model model, HttpServletRequest request, HttpSession session,
                                      @RequestParam("sId") String sId) {
 

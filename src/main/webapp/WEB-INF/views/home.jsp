@@ -21,7 +21,7 @@
     <h1>Hello ${uId}!</h1>
 
     <ul class="main__nav__next">
-        <li>👉🏻<a href="members/login"><b> Login 하기</b></a></li>
+        <li>👉🏻<a href="/login"><b> Login 하기</b></a></li>
     </ul>
 </main>
 <footer><jsp:include page="layout/footer.jsp"/></footer>
