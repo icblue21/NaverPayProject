@@ -35,7 +35,7 @@
     </div>
     <div>
         <c:forEach var="shoppingListDTO" items="${shoppingList}">
-            <a href="/members/shoppingDetail?sId=${shoppingListDTO.sId}"> "${shoppingListDTO.show()}" </a>
+            <a href="/naver/pay/detail/?sId=${shoppingListDTO.sId}"> "${shoppingListDTO.show()}" </a>
             <li> </li>
         </c:forEach>
     </div>

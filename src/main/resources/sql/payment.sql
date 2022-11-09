@@ -1,5 +1,3 @@
-DROP TABLE PAYMENT;
-
 CREATE TABLE PAYMENT (
                     pId VARCHAR(20) NOT NULL ,
                     sId VARCHAR(20) NOT NULL,

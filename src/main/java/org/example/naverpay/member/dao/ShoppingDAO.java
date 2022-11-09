@@ -4,6 +4,7 @@ import org.example.naverpay.member.database.JDBCMgr;
 import org.example.naverpay.member.entity.Members;
 import org.example.naverpay.member.entity.Shopping;
 import org.example.naverpay.member.service.ShoppingService;
+import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,6 +13,7 @@ import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 
+@Repository
 public class ShoppingDAO implements iShoppingDAO{
 
     private static ShoppingDAO shoppingDAO = null;
