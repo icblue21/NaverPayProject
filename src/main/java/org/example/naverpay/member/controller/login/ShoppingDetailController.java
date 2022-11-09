@@ -24,13 +24,17 @@ import java.util.Locale;
 @RequestMapping("/naver")
 public class ShoppingDetailController {
 
-    private SessionMgr sessionMgr = SessionMgr.getInstance();
-
-    private PaymentService paymentService = PaymentService.getInstance();
-    private ShoppingService shoppingService = ShoppingService.getInstance();
-
+    private SessionMgr sessionMgr;
+    private PaymentService paymentService;
+    private ShoppingService shoppingService;
     @Autowired
-    public ShoppingDetailController(SessionMgr sessionMgr){ this.sessionMgr = sessionMgr; }
+    public ShoppingDetailController(SessionMgr sessionMgr,
+                                    PaymentService paymentService,
+                                    ShoppingService shoppingService){
+        this.sessionMgr = sessionMgr;
+        this.paymentService = paymentService;
+        this.shoppingService = shoppingService;
+    }
 
 
     @GetMapping(value = "/pay/detail") // 결제 내역 화면 접근
