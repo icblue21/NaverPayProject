@@ -41,12 +41,12 @@
     <div>
         <form method="post" action="/naver/pay">
             <div class="form__list">
-                <label for="startDate">START DATE </label>
+                <label for="startDate">Start Date</label>
                 <input type="date" id="startDate" name="startDate" value="${startDate}"/>
             </div>
 
             <div class="form__list">
-                <label for="endDate">END DATE</label>
+                <label for="endDate">End Date</label>
                 <input type="date" id="endDate" name="endDate" value="${endDate}"/>
             </div>
             <input type="submit" name="submit" value="조회">
