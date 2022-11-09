@@ -68,8 +68,5 @@
     </div>
 </main>
 
-<footer class="main__nav__next">
-    <jsp:include page="../../layout/footer.jsp"/>
-</footer>
 </body>
 </html>

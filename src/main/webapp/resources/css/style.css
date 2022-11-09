@@ -12,9 +12,11 @@ body {
 
 main {
     width: 100vw;
-    height: 90vh;
-    margin: 0px;
+    height: auto;
+    margin: 5% 0px 0px 0px;
     padding: 0px;
+    position: absolute;
+    overflow: auto;
 
     display: flex;
     justify-content: space-evenly;
