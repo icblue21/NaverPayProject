@@ -41,12 +41,12 @@
         <!-- inline 구조여서 수직적 중앙이 맞지 않음 -->
         <%
             if (session.getAttribute("SESSION_ID") != null) { %>
-        <a href="/members/firstpage"><i class="fas fa-camera"></i></a>
-        <a href="/members/firstpage">nPay</a>
+        <a href="/firstpage"><i class="fas fa-camera"></i></a>
+        <a href="/naver/pay">nPay</a>
         <%
         } else { %>
         <a href="/"><i class="fas fa-camera"></i></a>
-        <a href="/">nPay</a>
+        <a href="/login">nPay</a>
         <%
             }
         %>
@@ -57,12 +57,12 @@
         <!-- block 구조여서 수직적 중앙이 맞음 -->
         <%
             if (session.getAttribute("SESSION_ID") != null) { %>
-        <li><a href="/members/firstpage">Home</a></li>
-        <li><a href="/members/shopping">결제 내역</a></li>
+        <li><a href="/firstpage">Home</a></li>
+        <li><a href="/naver/pay">결제 내역</a></li>
         <%
         } else { %>
         <li><a href="/">Home</a></li>
-        <li><a href="/">결제 내역</a></li>
+        <li><a href="/login">결제 내역</a></li>
         <%
             }
         %>
@@ -72,13 +72,13 @@
 
         <%
             if (session.getAttribute("SESSION_ID") != null) { %>
-        <li><a href="/members/private"><i class="fas fa-user"></i></a></li>
-        <li><a href="/members/logout"><i class="fas fa-toggle-on"></i></a></li>
+<%--        <li><a href="/members/private"><i class="fas fa-user"></i></a></li>--%>
+        <li><a href="/logout"><i class="fas fa-toggle-on"></i></a></li>
 
         <%
         } else { %>
-        <li><a href="/members/signup"><i class="fas fa-user-plus"></i></a></li>
-        <li><a href="/members/login"><i class="fas fa-toggle-off"></i></a></li>
+        <!-- <li><a href="/members/signup"><i class="fas fa-user-plus"></i></a></li> -->
+        <li><a href="/login"><i class="fas fa-toggle-off"></i></a></li>
         <%
             }
         %>

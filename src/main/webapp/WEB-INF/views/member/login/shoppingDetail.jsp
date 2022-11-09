@@ -39,7 +39,7 @@
         </div>
     </div>
     <div>
-        <form method="post" action="/members/shoppingDetail">
+        <form method="post" action="/naver/pay/detail">
             <input type="hidden" name="sId" value="${shoppingDTO.sId}">
             <input type="submit" value="주문 내역 삭제">
         </form>

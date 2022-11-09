@@ -39,15 +39,15 @@
 <main>
     <h1>Shopping List</h1>
     <div>
-        <form method="post" action="/members/shopping">
+        <form method="post" action="/naver/pay">
             <div class="form__list">
                 <label for="startDate">START DATE </label>
-                <input type="text" id="startDate" name="startDate" placeholder="yyyy.mm.dd" required/>
+                <input type="date" id="startDate" name="startDate" value="${startDate}"/>
             </div>
 
             <div class="form__list">
                 <label for="endDate">END DATE</label>
-                <input type="text" id="endDate" name="endDate" placeholder="yyyy.mm.dd" required/>
+                <input type="date" id="endDate" name="endDate" value="${endDate}"/>
             </div>
             <input type="submit" name="submit" value="Submit">
         </form>
@@ -61,7 +61,7 @@
                     <p class="card-text"><p>상품금액 ${shoppingListDTO.getsPayment()}원</p>
                     <p class="q">${shoppingListDTO.getsStatus()}</p>
                     <p class="q">판매자 ${shoppingListDTO.getSeller()}  ${shoppingListDTO.getSellerPhoneNumber()}</p></p>
-                    <a href="/members/shoppingDetail?sId=${shoppingListDTO.sId}" class="btn btn-secondary">세부 정보</a>
+                    <a href="/naver/pay/detail?sId=${shoppingListDTO.sId}" class="btn btn-secondary">세부 정보</a>
                 </div>
             </div>
         </c:forEach>
