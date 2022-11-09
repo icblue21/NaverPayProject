@@ -9,4 +9,5 @@ public interface iPaymentService {
     public boolean isLogin(HttpSession session);
     public boolean isPurchaseHistory(String sId);
     public PaymentDTO orderStatus(String sId);
+    public boolean isOrderStatusRemoved(String pId);
 }
