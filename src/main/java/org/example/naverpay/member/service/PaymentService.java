@@ -4,7 +4,9 @@ import org.example.naverpay.member.dao.PaymentDAO;
 import org.example.naverpay.member.dao.ShoppingDAO;
 import org.example.naverpay.member.dto.PaymentDTO;
 import org.example.naverpay.member.entity.Payment;
+import org.springframework.stereotype.Service;
 
+@Service
 public class PaymentService implements iPaymentService{
 
     private PaymentDAO paymentDAO = PaymentDAO.getInstance();
