@@ -49,7 +49,7 @@
                 <label for="endDate">END DATE</label>
                 <input type="date" id="endDate" name="endDate" value="${endDate}"/>
             </div>
-            <input type="submit" name="submit" value="Submit">
+            <input type="submit" name="submit" value="조회">
         </form>
     </div>
     <div class="goods_info">
