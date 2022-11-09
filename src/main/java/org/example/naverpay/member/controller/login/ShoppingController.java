@@ -20,7 +20,7 @@ import java.util.List;
 import java.util.Locale;
 
 @Controller
-@RequestMapping("/members")
+@RequestMapping("/naver")
 public class ShoppingController {
 
     private SessionMgr sessionMgr = SessionMgr.getInstance();
@@ -30,7 +30,7 @@ public class ShoppingController {
     @Autowired
     public ShoppingController(SessionMgr sessionMgr){ this.sessionMgr = sessionMgr; }
 
-    @GetMapping(value = "/shopping") // 결제 내역 화면 접근
+    @GetMapping(value = "/pay") // 결제 내역 화면 접근
     public String shoppingPage(Locale locale, Model model, HttpServletRequest request, HttpSession session) {
 
 
@@ -47,7 +47,7 @@ public class ShoppingController {
         return "/member/login/shopping";
     }
 
-    @PostMapping("/shopping") // 기간 검색
+    @PostMapping("/pay") // 기간 검색
     public String searchShoppingList(@RequestParam String startDate,
                                      @RequestParam String endDate,
                                      Model model, HttpServletRequest request,
