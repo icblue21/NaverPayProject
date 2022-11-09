@@ -41,7 +41,6 @@ public class ShoppingController {
         String mId = session.getAttribute("SESSION_ID").toString();
         String startDate = getStartDate();
         String endDate = getCurrentDate();
-        //String shoppingList = getAllShoppingList(mId,startDate,endDate);
         List<ShoppingDTO> shoppingDTOList = shoppingService.getAllShoppingList(mId,startDate,endDate);
         model.addAttribute("shoppingList",shoppingDTOList);
 
@@ -67,36 +66,6 @@ public class ShoppingController {
 
 
         return "/member/login/shopping";
-    }
-
-    public String getAllShoppingList(String mId, String startDate, String endDate){
-
-        List<ShoppingDTO> shoppingDTOList = shoppingService.getAllShoppingList(mId,startDate,endDate);
-        StringBuilder sb = new StringBuilder();
-        if( shoppingDTOList != null ){
-
-            for(int i=0; i<shoppingDTOList.size(); i++){
-                sb.append("제목 : ");
-                sb.append(shoppingDTOList.get(i).getsTitle());
-                sb.append("\n");
-                sb.append("가격 : ");
-                sb.append(shoppingDTOList.get(i).getsPayment());
-                sb.append("\n");
-                sb.append("구매날짜 : ");
-                sb.append(shoppingDTOList.get(i).getsDate());
-                sb.append("\n");
-                sb.append("구매상태 : ");
-                sb.append(shoppingDTOList.get(i).getsStatus());
-                sb.append("\n");
-                sb.append("판매자 : ");
-                sb.append(shoppingDTOList.get(i).getSeller());
-                sb.append("\n");
-                sb.append("판매자 전화번호 : ");
-                sb.append(shoppingDTOList.get(i).getSellerPhoneNumber());
-                sb.append("\n");
-            }
-        }
-        return sb.toString();
     }
 
     public String getCurrentDate() {

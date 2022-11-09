@@ -27,6 +27,7 @@ public class HomeController { // 비 로그인 상태 홈 화면
 
         if (session.getAttribute("SESSION_ID") != null) {
             model.addAttribute("mId", sessionMgr.get(session));
+            return "/member/login/firstpage";
         }
 
         return "home";
