@@ -1,7 +1,6 @@
 package org.example.naverpay.member.dao;
 
 import org.example.naverpay.member.database.JDBCMgr;
-import org.example.naverpay.member.entity.Members;
 import org.example.naverpay.member.entity.Payment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -65,14 +64,14 @@ public class PaymentDAO implements iPaymentDAO{
     public int delete(String shoppingId) {
         int res = 0;
         try {
-            conn = JDBCMgr.getConnection();
+            conn = jdbcMgr.getConnection();
             stmt = conn.prepareStatement(PAYMENT_DELETE);
             stmt.setString(1, shoppingId);
             res = stmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            JDBCMgr.close(stmt, conn);
+            jdbcMgr.close(stmt, conn);
         }
         return res;
     }
