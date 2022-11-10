@@ -1,7 +1,6 @@
 package org.example.naverpay.member.dao;
 
 import org.example.naverpay.member.database.JDBCMgr;
-import org.example.naverpay.member.entity.Members;
 import org.example.naverpay.member.entity.Payment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -28,8 +27,6 @@ public class PaymentDAO implements iPaymentDAO{
     private ResultSet rs = null;
 
     private static final String PAYMENT_SELECT = "select * from payment where sId = ?";
-
-
 
     @Override
     public Payment select(String shoppingId) {

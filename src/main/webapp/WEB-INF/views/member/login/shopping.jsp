@@ -61,7 +61,7 @@
                     <p class="card-text"><p>상품금액 ${shoppingListDTO.getsPayment()}원</p>
                     <p class="q">${shoppingListDTO.getsStatus()}</p>
                     <p class="q">판매자 ${shoppingListDTO.getSeller()}  ${shoppingListDTO.getSellerPhoneNumber()}</p></p>
-                    <a href="/naver/pay/detail?sId=${shoppingListDTO.sId}" class="btn btn-secondary">세부 정보</a>
+                    <a href="/naver/pay/detail/${shoppingListDTO.sId}" class="btn btn-secondary">세부 정보</a>
                 </div>
             </div>
         </c:forEach>

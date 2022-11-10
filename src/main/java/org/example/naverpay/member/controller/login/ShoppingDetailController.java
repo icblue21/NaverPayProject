@@ -8,10 +8,7 @@ import org.example.naverpay.session.SessionMgr;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -37,20 +34,27 @@ public class ShoppingDetailController {
     }
 
 
-    @GetMapping(value = "/pay/detail") // 결제 내역 화면 접근
-    public String shoppingPage(Locale locale, Model model, HttpServletRequest request, HttpSession session,
-    @RequestParam("sId") String sId) {
+    @GetMapping(value = "/pay/detail/{sId}") // 결제 내역 화면 접근
+    public String shoppingDetailPage(Locale locale, Model model, HttpServletRequest request, HttpSession session,
+    @PathVariable String sId) {
 
 
         if (session.getAttribute("SESSION_ID") != null) {
             model.addAttribute("mId", sessionMgr.get(session));
+        }else {
+            System.out.println("no login");
+            return "redirect:/"; // 로그인이 되어있지 않을 경우 접근 불가
         }
         model.addAttribute("sId",sId);
-
         PaymentDTO paymentDTO = paymentService.getPaymentInfo(sId);
         model.addAttribute("paymentDTO",paymentDTO);
         ShoppingDTO shoppingDTO = shoppingService.getShoppingInfo(sId);
         model.addAttribute("shoppingDTO",shoppingDTO);
+
+        if(!session.getAttribute("SESSION_ID").equals(shoppingDTO.getmId())){
+            System.out.println("not your product");
+            return "redirect:/"; //a로 로그인 했는데 b의 주문내역을 URL로 접근하는상황을 방지하는 로직
+        }
 
         return "/member/login/shoppingDetail";
     }
