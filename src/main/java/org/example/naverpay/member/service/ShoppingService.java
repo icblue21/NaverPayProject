@@ -1,6 +1,6 @@
 package org.example.naverpay.member.service;
 
-import org.example.naverpay.member.dao.MembersDAO;
+
 import org.example.naverpay.member.dao.ShoppingDAO;
 import org.example.naverpay.member.dto.ShoppingDTO;
 import org.example.naverpay.member.entity.Shopping;
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.stream.Collectors;
+
 
 @Service
 public class ShoppingService implements iShoppingService {
@@ -20,6 +20,7 @@ public class ShoppingService implements iShoppingService {
     public ShoppingService(ShoppingDAO shoppingDAO) {
         this.shoppingDAO = shoppingDAO;
     }
+
 
     @Override
     public List<ShoppingDTO> getAllShoppingList(String mId,String startDate, String endDate) {

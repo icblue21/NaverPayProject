@@ -5,6 +5,7 @@ import org.example.naverpay.member.dao.ShoppingDAO;
 import org.example.naverpay.member.dto.PaymentDTO;
 import org.example.naverpay.member.dto.ShoppingDTO;
 import org.example.naverpay.member.entity.Payment;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.example.naverpay.member.entity.Shopping;
 import org.example.naverpay.session.SessionMgr;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,7 @@ public class PaymentService implements iPaymentService{
     private ShoppingDAO shoppingDAO;
     private PaymentDAO paymentDAO;
 
+    private PaymentDAO paymentDAO;
     @Autowired
     public PaymentService(SessionMgr sessionMgr, ShoppingDAO shoppingDAO, PaymentDAO paymentDAO) {
         this.sessionMgr = sessionMgr;
@@ -26,24 +28,9 @@ public class PaymentService implements iPaymentService{
         this.paymentDAO = paymentDAO;
     }
 
-    @Override
-    public boolean isLogin(HttpSession session) {  //로그인 여부 판단
-        if (session.getAttribute("SESSION_ID") == null) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public boolean isPurchaseHistory(String sId) { //구매내역이 있는지 확인
-        if(sId.equals("")){
-            return true;
-        }
-        Shopping shopping = shoppingDAO.select(sId);
-        if (shopping == null){
-            return true;
-        }
-        return false;
+    @Autowired
+    public PaymentService(PaymentDAO paymentDAO) {
+        this.paymentDAO = paymentDAO;
     }
 
     @Override

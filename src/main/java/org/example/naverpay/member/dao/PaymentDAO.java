@@ -3,6 +3,7 @@ package org.example.naverpay.member.dao;
 import org.example.naverpay.member.database.JDBCMgr;
 import org.example.naverpay.member.entity.Members;
 import org.example.naverpay.member.entity.Payment;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
@@ -12,6 +13,13 @@ import java.sql.SQLException;
 
 @Repository
 public class PaymentDAO implements iPaymentDAO{
+
+    public JDBCMgr jdbcMgr;
+
+    @Autowired
+    public PaymentDAO(JDBCMgr jdbcMgr){
+        this.jdbcMgr = jdbcMgr;
+    }
 
     private Connection conn = null;
 
@@ -26,7 +34,7 @@ public class PaymentDAO implements iPaymentDAO{
     public Payment select(String shoppingId) {
         Payment payment = null;
         try {
-            conn = JDBCMgr.getConnection();
+            conn = jdbcMgr.getConnection();
             stmt = conn.prepareStatement(PAYMENT_SELECT);
             stmt.setString(1, shoppingId);
 
@@ -48,7 +56,7 @@ public class PaymentDAO implements iPaymentDAO{
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            JDBCMgr.close(rs, stmt, conn);
+            jdbcMgr.close(rs, stmt, conn);
         }
         return payment;
     }

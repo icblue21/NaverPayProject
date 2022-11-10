@@ -11,7 +11,6 @@ public class MembersService implements  iMembersService {
 
     private MembersDAO membersDAO;
 
-
     @Autowired
     public MembersService(MembersDAO membersDAO) {
         this.membersDAO = membersDAO;
