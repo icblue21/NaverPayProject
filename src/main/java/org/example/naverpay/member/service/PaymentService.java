@@ -12,12 +12,14 @@ import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpSession;
 
+
 @Service
 public class PaymentService implements iPaymentService{
 
     private SessionMgr sessionMgr;
     private ShoppingDAO shoppingDAO;
     private PaymentDAO paymentDAO;
+    
     @Autowired
     public PaymentService(SessionMgr sessionMgr, ShoppingDAO shoppingDAO, PaymentDAO paymentDAO) {
         this.sessionMgr = sessionMgr;
@@ -46,13 +48,13 @@ public class PaymentService implements iPaymentService{
     }
 
     @Override
-    public PaymentDTO orderStatus(String sId) {
+    public PaymentDTO orderStatus(String sId) { // 주문 상세 데이터를 DTO로 변환시켜 반환
         Payment payment = paymentDAO.select(sId);
         return payment.toDTO();
     }
 
     @Override
-    public boolean isYourProduct(HttpSession session, ShoppingDTO shoppingDTO) {
+    public boolean isYourProduct(HttpSession session, ShoppingDTO shoppingDTO) { //세션 ID에 저장된 mId와 쇼핑DTO에 저장된 mId가 같은지 확인함
         if(session.getAttribute("SESSION_ID").equals(shoppingDTO.getmId())){
             return false;
         }
