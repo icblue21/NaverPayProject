@@ -38,19 +38,26 @@ public class ShoppingDetailController {
 
 
     @GetMapping(value = "/pay/detail") // 결제 내역 화면 접근
-    public String shoppingPage(Locale locale, Model model, HttpServletRequest request, HttpSession session,
+    public String shoppingDetailPage(Locale locale, Model model, HttpServletRequest request, HttpSession session,
     @RequestParam("sId") String sId) {
 
 
         if (session.getAttribute("SESSION_ID") != null) {
             model.addAttribute("mId", sessionMgr.get(session));
+        }else {
+            System.out.println("no login");
+            return "redirect:/"; // 로그인이 되어있지 않을 경우 접근 불가
         }
         model.addAttribute("sId",sId);
-
         PaymentDTO paymentDTO = paymentService.getPaymentInfo(sId);
         model.addAttribute("paymentDTO",paymentDTO);
         ShoppingDTO shoppingDTO = shoppingService.getShoppingInfo(sId);
         model.addAttribute("shoppingDTO",shoppingDTO);
+
+        if(!session.getAttribute("SESSION_ID").equals(shoppingDTO.getmId())){
+            System.out.println("not your product");
+            return "redirect:/"; //a로 로그인 했는데 b의 주문내역을 URL로 접근하는상황을 방지하는 로직
+        }
 
         return "/member/login/shoppingDetail";
     }
