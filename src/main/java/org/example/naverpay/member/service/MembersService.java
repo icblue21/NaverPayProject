@@ -9,15 +9,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class MembersService implements  iMembersService {
 
-    private MembersDAO membersDAO = MembersDAO.getInstance();
+    private MembersDAO membersDAO;
 
-    private static MembersService membersService = null;
-
-    public static MembersService getInstance() {
-        if (membersService == null) {
-            membersService = new MembersService();
-        }
-        return membersService;
+    @Autowired
+    public MembersService(MembersDAO membersDAO) {
+        this.membersDAO = membersDAO;
     }
 
     @Override
