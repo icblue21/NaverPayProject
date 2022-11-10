@@ -21,6 +21,5 @@
     <h1>Hello ${mId}!</h1>
 
 </main>
-<footer><jsp:include page="../../layout/footer.jsp"/></footer>
 </body>
 </html>

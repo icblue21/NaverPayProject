@@ -32,7 +32,7 @@
     <div>
         <h3> 결제 금액 정보 </h3>
         <div>
-            <h5> 결제 수단 : ${paymentDTO.pMethod} | 자세한 결제 수단 : ${paymentDTO.detailPayMethod}</h5>
+            <h5> 결제 수단 : ${paymentDTO.pMethod} | 자세한 결제 수단 : ${paymentDTO.detailPayMethod} (${paymentDTO.pInfo})</h5>
             <h5> 결제 날짜 : ${paymentDTO.pDate}, 주문 금액 : ${paymentDTO.totalPayment}</h5>
             <h5> 결제 수단에 의한 금액 : ${paymentDTO.paymentByMethod}</h5>
             <h5> 포인트에 의한 금액 : ${paymentDTO.paymentByPoint}</h5>
@@ -50,6 +50,5 @@
         </form>
     </div>
 </main>
-<footer><jsp:include page="../../layout/footer.jsp"/></footer>
 </body>
 </html>

@@ -18,18 +18,17 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 @Controller
-@RequestMapping("/members")
 public class LoginController { // 로그인 화면
 
-    private SessionMgr sessionMgr; // = SessionMgr.getInstance();
-    private CookieMgr cookieMgr; // = CookieMgr.getInstance();
-    private MembersService membersService = MembersService.getInstance();
-
+    private SessionMgr sessionMgr;
+    private CookieMgr cookieMgr;
+    private MembersService membersService;
 
     @Autowired
-    public LoginController(SessionMgr sessionMgr, CookieMgr cookieMgr) {
+    public LoginController(SessionMgr sessionMgr, CookieMgr cookieMgr, MembersService membersService) {
         this.sessionMgr = sessionMgr;
         this.cookieMgr = cookieMgr;
+        this.membersService = membersService;
     }
 
     @GetMapping("/login")
@@ -39,17 +38,6 @@ public class LoginController { // 로그인 화면
         if (session.getAttribute("SESSION_ID") != null) { // 로그인이 되어있는 상태
             return "redirect:/";
         }
-
-        String autoLogin = cookieMgr.get(request, "AUTO_LOGIN");
-        String cookieId = cookieMgr.get(request, "COOKIE_ID");
-
-
-//        if (autoLogin != null && cookieId != null) {
-//            if (memberService.autoLogin(autoLogin, cookieId)) {
-//                sessionMgr.create(session, cookieId);
-//                view = "redirect:/";
-//            }
-//        }
 
         return view;
     }

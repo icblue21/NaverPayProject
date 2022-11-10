@@ -4,6 +4,7 @@ import org.example.naverpay.member.dao.MembersDAO;
 import org.example.naverpay.member.dao.ShoppingDAO;
 import org.example.naverpay.member.dto.ShoppingDTO;
 import org.example.naverpay.member.entity.Shopping;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.LinkedList;
@@ -13,16 +14,13 @@ import java.util.stream.Collectors;
 @Service
 public class ShoppingService implements iShoppingService {
 
-    private ShoppingDAO shoppingDAO = ShoppingDAO.getInstance();
+    private ShoppingDAO shoppingDAO;
 
-    public static ShoppingService shoppingService = null;
-
-    public static ShoppingService getInstance(){
-        if(shoppingService == null){
-            shoppingService = new ShoppingService();
-        }
-        return shoppingService;
+    @Autowired
+    public ShoppingService(ShoppingDAO shoppingDAO) {
+        this.shoppingDAO = shoppingDAO;
     }
+
     @Override
     public List<ShoppingDTO> getAllShoppingList(String mId,String startDate, String endDate) {
 

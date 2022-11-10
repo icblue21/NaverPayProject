@@ -30,16 +30,23 @@ public class ShoppingDetailController {  /*쇼핑 상세접근 페이지 컨트�
     public String orderStatusPage(@RequestParam("sId") String sId, HttpSession session, Model model) {
         String view = "/member/login/shoppingDetail";
 
-        if (!(paymentService.isLogin(session))) {  // 로그인을 했는지 여부를 물어봄
+        if ((paymentService.isLogin(session))) {  // 로그인을 했는지 여부를 물어봄
             System.out.println("no Login");
             return "redirect:/";
-
         }
-        if (!paymentService.isPurchaseHistory(sId)) { // sId값이 제대로 넘어왔는지 혹은 구매내역이 있는지 여부를 물어봄
+        
+        if (paymentService.isPurchaseHistory(sId)) { // sId값이 제대로 넘어왔는지 혹은 구매내역이 있는지 여부를 물어봄
             System.out.println("no history");
             return "redirect:/";
         }
+        
         ShoppingDTO shoppingDTO = shoppingService.getShoppingInfo(sId);
+        
+        if(paymentService.isYourProduct(session,shoppingDTO)){ //예를들면 a고객이 b고객의 상품정보를 검색하려고 하면 안되게끔 에외처리
+            System.out.println("not your product");
+            return "redirect:/";
+        }
+        
         model.addAttribute("shoppingDTO",shoppingDTO);
         PaymentDTO paymentDTO = paymentService.orderStatus(sId);
         model.addAttribute("paymentDTO", paymentDTO);  //로그인과 구매내역이 모두 있는 경우 모델에 저장을 하고 정상적인 페이지를 반환함

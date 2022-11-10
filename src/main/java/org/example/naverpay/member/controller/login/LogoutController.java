@@ -15,11 +15,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 @Controller
-@RequestMapping("/members")
 public class LogoutController { // 로그아웃 컨트롤러
 
-    private SessionMgr sessionMgr; // = SessionMgr.getInstance();
-    private CookieMgr cookieMgr; // = CookieMgr.getInstance();
+    private SessionMgr sessionMgr;
+    private CookieMgr cookieMgr;
 
 
     @Autowired
@@ -35,11 +34,7 @@ public class LogoutController { // 로그아웃 컨트롤러
                            HttpSession session, HttpServletResponse response) {
         String view = "redirect:/"; // redirect:/ => index.jsp
 
-//        redirectAttributes.addAttribute("redirect", "value"); // localhost:8080/?redirect=value
         redirectAttributes.addFlashAttribute("redirect", "value");
-
-        // model.addAttribute()
-        // @ModelAttribute()
 
         if (session.getAttribute("SESSION_ID") == null) {
             session.setAttribute("logout", Status.FAIL);

@@ -13,8 +13,6 @@ import java.sql.SQLException;
 @Repository
 public class PaymentDAO implements iPaymentDAO{
 
-    private static PaymentDAO paymentDAO = null;
-
     private Connection conn = null;
 
     private PreparedStatement stmt = null;
@@ -23,14 +21,6 @@ public class PaymentDAO implements iPaymentDAO{
 
     private static final String PAYMENT_SELECT = "select * from payment where sId = ?";
     private static final String PAYMENT_DELETE = "delete payment where sId = ?";
-
-    public static PaymentDAO getInstance() {
-        if (paymentDAO == null) {
-            paymentDAO = new PaymentDAO();
-        }
-        return paymentDAO;
-    }
-
 
     @Override
     public Payment select(String shoppingId) {

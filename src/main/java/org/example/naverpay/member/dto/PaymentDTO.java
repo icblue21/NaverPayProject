@@ -23,10 +23,6 @@ public class PaymentDTO{
 
     private int totalPayment = 0; // 총 결제 금액 ( 결제수단 + 포인트 )
 
-    PaymentDTO(){
-
-    }
-
     public PaymentDTO(String pId, String sId, String pMethod, String detailPayMethod, String pDate, int paymentByMethod, int totalPayment) {
         this.pId = pId;
         this.sId = sId;

@@ -12,10 +12,9 @@ import javax.servlet.http.HttpSession;
 import java.util.Locale;
 
 @Controller
-@RequestMapping("/members")
 public class FirstPageController { // 로그인 후 첫 화면
 
-    private SessionMgr sessionMgr; //= SessionMgr.getInstance();
+    private SessionMgr sessionMgr;
 
     @Autowired
     public FirstPageController(SessionMgr sessionMgr) {

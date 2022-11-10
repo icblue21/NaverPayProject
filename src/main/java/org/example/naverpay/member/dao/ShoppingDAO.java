@@ -15,9 +15,6 @@ import java.util.List;
 
 @Repository
 public class ShoppingDAO implements iShoppingDAO{
-
-    private static ShoppingDAO shoppingDAO = null;
-
     private Connection conn = null;
 
     private PreparedStatement stmt = null;
@@ -25,15 +22,8 @@ public class ShoppingDAO implements iShoppingDAO{
     private ResultSet rs = null;
 
     private static final String SHOPPING_SELECT = "select * from shopping where sId = ?";
-    private static final String ALL_SHOPPING_LIST = "select * from shopping where mId = ? and sDate >= ? and sDate <= ?";
+    private static final String ALL_SHOPPING_LIST = "select * from shopping where mId = ? and sDate >= ? and sDate <= ? ORDER BY sDate DESC";
     private static final String SHOPPING_DELETE = "delete shopping where sId = ?";
-
-    public static ShoppingDAO getInstance() {
-        if (shoppingDAO == null) {
-            shoppingDAO = new ShoppingDAO();
-        }
-        return shoppingDAO;
-    }
 
     @Override
     public Shopping select(String shoppingId) {
