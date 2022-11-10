@@ -4,6 +4,7 @@ import org.example.naverpay.member.database.JDBCMgr;
 import org.example.naverpay.member.entity.Members;
 import org.example.naverpay.member.entity.Shopping;
 import org.example.naverpay.member.service.ShoppingService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
@@ -16,7 +17,12 @@ import java.util.List;
 @Repository
 public class ShoppingDAO implements iShoppingDAO{
 
-    private static ShoppingDAO shoppingDAO = null;
+    public JDBCMgr jdbcMgr;
+
+    @Autowired
+    public ShoppingDAO(JDBCMgr jdbcMgr){
+        this.jdbcMgr = jdbcMgr;
+    }
 
     private Connection conn = null;
 
@@ -28,18 +34,12 @@ public class ShoppingDAO implements iShoppingDAO{
     private static final String ALL_SHOPPING_LIST = "select * from shopping where mId = ? and sDate >= ? and sDate <= ? ORDER BY sDate DESC";
     private static final String SHOPPING_DELETE = "delete shopping where sId = ?";
 
-    public static ShoppingDAO getInstance() {
-        if (shoppingDAO == null) {
-            shoppingDAO = new ShoppingDAO();
-        }
-        return shoppingDAO;
-    }
 
     @Override
     public Shopping select(String shoppingId) {
         Shopping shopping = null;
         try {
-            conn = JDBCMgr.getConnection();
+            conn = jdbcMgr.getConnection();
             stmt = conn.prepareStatement(SHOPPING_SELECT);
             stmt.setString(1, shoppingId);
 
@@ -61,7 +61,7 @@ public class ShoppingDAO implements iShoppingDAO{
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            JDBCMgr.close(rs, stmt, conn);
+            jdbcMgr.close(rs, stmt, conn);
         }
         return shopping;
     }
@@ -70,7 +70,7 @@ public class ShoppingDAO implements iShoppingDAO{
     public List<Shopping> selectAll(String uId, String startDate, String endDate) {
         List<Shopping> memberList = new LinkedList<>();
         try {
-            conn = JDBCMgr.getConnection();
+            conn = jdbcMgr.getConnection();
             stmt = conn.prepareStatement(ALL_SHOPPING_LIST);
             stmt.setString(1, uId);
             stmt.setString(2, startDate);
@@ -94,7 +94,7 @@ public class ShoppingDAO implements iShoppingDAO{
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            JDBCMgr.close(rs, stmt, conn);
+            jdbcMgr.close(rs, stmt, conn);
         }
         return memberList;
     }
@@ -103,14 +103,14 @@ public class ShoppingDAO implements iShoppingDAO{
     public int delete(String sId) {
         int res = 0;
         try {
-            conn = JDBCMgr.getConnection();
+            conn = jdbcMgr.getConnection();
             stmt = conn.prepareStatement(SHOPPING_DELETE);
             stmt.setString(1, sId);
             res = stmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            JDBCMgr.close(stmt, conn);
+            jdbcMgr.close(stmt, conn);
         }
         return res;
     }

@@ -3,6 +3,7 @@ package org.example.naverpay.member.dao;
 import org.example.naverpay.member.database.JDBCMgr;
 import org.example.naverpay.member.entity.Members;
 import org.h2.command.Prepared;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.sql.Connection;
@@ -13,7 +14,13 @@ import java.sql.SQLException;
 @Repository
 public class MembersDAO implements iMembersDAO{
 
-    private static MembersDAO membersDAO = null;
+    public JDBCMgr jdbcMgr;
+
+    @Autowired
+    public MembersDAO(JDBCMgr jdbcMgr){
+        this.jdbcMgr = jdbcMgr;
+    }
+
 
     private Connection conn = null;
 
@@ -23,18 +30,12 @@ public class MembersDAO implements iMembersDAO{
 
     private static final String MEMBER_SELECT = "select * from members where mId = ?";
 
-    public static MembersDAO getInstance() {
-        if (membersDAO == null) {
-            membersDAO = new MembersDAO();
-        }
-        return membersDAO;
-    }
 
     @Override
     public Members select(String uId) {
         Members member = null;
         try {
-            conn = JDBCMgr.getConnection();
+            conn = jdbcMgr.getConnection();
             stmt = conn.prepareStatement(MEMBER_SELECT);
             stmt.setString(1, uId);
 
@@ -54,7 +55,7 @@ public class MembersDAO implements iMembersDAO{
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            JDBCMgr.close(rs, stmt, conn);
+            jdbcMgr.close(rs, stmt, conn);
         }
         return member;
     }
