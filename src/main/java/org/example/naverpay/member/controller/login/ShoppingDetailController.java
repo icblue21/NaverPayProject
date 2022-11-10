@@ -8,10 +8,7 @@ import org.example.naverpay.session.SessionMgr;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -37,9 +34,9 @@ public class ShoppingDetailController {
     }
 
 
-    @GetMapping(value = "/pay/detail") // 결제 내역 화면 접근
+    @GetMapping(value = "/pay/detail/{sId}") // 결제 내역 화면 접근
     public String shoppingDetailPage(Locale locale, Model model, HttpServletRequest request, HttpSession session,
-    @RequestParam("sId") String sId) {
+    @PathVariable String sId) {
 
 
         if (session.getAttribute("SESSION_ID") != null) {
