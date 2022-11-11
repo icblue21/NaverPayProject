@@ -1,9 +1,5 @@
 package org.example.naverpay.member.entity;
 
-import org.example.naverpay.member.vo.MembersVO;
-
-import java.util.Objects;
-
 public class Members {
 
     private String mId = ""; // 아이디

@@ -2,7 +2,6 @@ package org.example.naverpay.member.dao;
 
 import org.example.naverpay.member.database.JDBCMgr;
 import org.example.naverpay.member.entity.Members;
-import org.h2.command.Prepared;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 

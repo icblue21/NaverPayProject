@@ -1,9 +1,6 @@
 package org.example.naverpay.member.entity;
 
 import org.example.naverpay.member.dto.PaymentDTO;
-import org.example.naverpay.member.vo.PaymentVO;
-
-import java.util.Objects;
 
 public class Payment {
 
