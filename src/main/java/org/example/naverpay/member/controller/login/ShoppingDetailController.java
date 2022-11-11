@@ -75,22 +75,4 @@ public class ShoppingDetailController {
         session.setAttribute("alert", true); //redirect 후 경고창(alert) 띄우기 여부 결정하는 값 저장
         return view;
     }
-
-    public String getCurrentDate() {
-
-        LocalDate now = LocalDate.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd");
-        String currentDate = now.format(formatter);
-
-        return currentDate;
-    }
-
-    public String getStartDate(){
-
-        LocalDate now = LocalDate.now().minusYears(2);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd");
-        String startDate = now.format(formatter);
-
-        return startDate;
-    }
 }
