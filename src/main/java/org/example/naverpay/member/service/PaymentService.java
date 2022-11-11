@@ -5,6 +5,7 @@ import org.example.naverpay.member.dto.PaymentDTO;
 import org.example.naverpay.member.entity.Payment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class PaymentService implements iPaymentService{
@@ -18,13 +19,18 @@ public class PaymentService implements iPaymentService{
 
 
     @Override
+    @Transactional(readOnly = true)
     public PaymentDTO getPaymentInfo(String sId) {
 
         Payment payment = paymentDAO.select(sId);
+        if( payment == null ){
+            return null;
+        }
         return payment.toDTO();
     }
 
     @Override
+    @Transactional
     public boolean isPaymentInfoRemoved(String sId) {
         if (sId == null) {
             return false;

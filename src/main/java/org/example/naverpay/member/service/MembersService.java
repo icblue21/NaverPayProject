@@ -5,6 +5,7 @@ import org.example.naverpay.member.dto.MembersDTO;
 import org.example.naverpay.member.entity.Members;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class MembersService implements  iMembersService {
@@ -17,6 +18,7 @@ public class MembersService implements  iMembersService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public MembersDTO login(String mId, String mPw) {
         MembersDTO membersDTO = new MembersDTO(mId, mPw);
         if (membersDTO == null) return null;
