@@ -72,7 +72,7 @@ public class ShoppingController {
 
         // DB에서 로그인한 아이디의 모든 구매내역리스트를 가져온다.
         String mId = session.getAttribute("SESSION_ID").toString();
-       // String shoppingList = getAllShoppingList(mId,startDate,endDate);
+        // String shoppingList = getAllShoppingList(mId,startDate,endDate);
         List<ShoppingDTO> shoppingDTOList = shoppingService.getAllShoppingList(mId,startDate,endDate);
         model.addAttribute("shoppingList",shoppingDTOList);
 

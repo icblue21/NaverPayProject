@@ -27,6 +27,7 @@ public class PaymentDAO implements iPaymentDAO{
     private ResultSet rs = null;
 
     private static final String PAYMENT_SELECT = "select * from payment where sId = ?";
+    private static final String PAYMENT_DELETE = "delete payment where sId = ?";
 
     @Override
     public Payment select(String shoppingId) {
@@ -57,5 +58,21 @@ public class PaymentDAO implements iPaymentDAO{
             jdbcMgr.close(rs, stmt, conn);
         }
         return payment;
+    }
+
+    @Override
+    public int delete(String shoppingId) {
+        int res = 0;
+        try {
+            conn = jdbcMgr.getConnection();
+            stmt = conn.prepareStatement(PAYMENT_DELETE);
+            stmt.setString(1, shoppingId);
+            res = stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            jdbcMgr.close(stmt, conn);
+        }
+        return res;
     }
 }

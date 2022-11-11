@@ -23,4 +23,19 @@ public class PaymentService implements iPaymentService{
         Payment payment = paymentDAO.select(sId);
         return payment.toDTO();
     }
+
+    @Override
+    public boolean isPaymentInfoRemoved(String sId) {
+        if (sId == null) {
+            return false;
+        }
+
+        Payment payment = paymentDAO.select(sId);
+        if (payment == null) {
+            return false;
+        }
+
+        int res = paymentDAO.delete(sId);
+        return res > 0;
+    }
 }

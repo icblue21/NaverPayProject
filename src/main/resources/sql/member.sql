@@ -1,5 +1,3 @@
-DROP TABLE MEMBERS;
-
 CREATE TABLE MEMBERS (
                         mId VARCHAR(20) NOT NULL ,
                         mPw VARCHAR(20) NOT NULL,

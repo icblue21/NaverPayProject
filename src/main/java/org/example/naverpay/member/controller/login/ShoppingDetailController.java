@@ -5,6 +5,7 @@ import org.example.naverpay.member.dto.ShoppingDTO;
 import org.example.naverpay.member.service.PaymentService;
 import org.example.naverpay.member.service.ShoppingService;
 import org.example.naverpay.session.SessionMgr;
+import org.example.naverpay.util.Status;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,6 +25,7 @@ public class ShoppingDetailController {
     private SessionMgr sessionMgr;
     private PaymentService paymentService;
     private ShoppingService shoppingService;
+
     @Autowired
     public ShoppingDetailController(SessionMgr sessionMgr,
                                     PaymentService paymentService,
@@ -32,7 +34,6 @@ public class ShoppingDetailController {
         this.paymentService = paymentService;
         this.shoppingService = shoppingService;
     }
-
 
     @GetMapping(value = "/pay/detail/{sId}") // 결제 내역 화면 접근
     public String shoppingDetailPage(Locale locale, Model model, HttpServletRequest request, HttpSession session,
@@ -58,22 +59,21 @@ public class ShoppingDetailController {
 
         return "/member/login/shoppingDetail";
     }
-    @PostMapping(value = "/pay/detail")
-    public String deleteShoppingList(Locale locale, Model model, HttpServletRequest request, HttpSession session,
-                                     @RequestParam("sId") String sId) {
 
-        if (session.getAttribute("SESSION_ID") == null) {
-            return "redirect:/";
+    @PostMapping("/pay/detail")
+    public String deleteShoppingDetailPage(@RequestParam String sId, HttpSession session) {
+        String view = "/member/login/shoppingDetail";
+        Status respStatus = Status.FAIL;
+
+        if (paymentService.isPaymentInfoRemoved(sId)) {
+            shoppingService.deleteShoppingList(sId);
+            view = "redirect:/naver/pay";
+            respStatus = Status.SUCCESS;
         }
 
-        shoppingService.deleteShoppingList(sId);
-        String mId = session.getAttribute("SESSION_ID").toString();
-        String startDate = getStartDate();
-        String endDate = getCurrentDate();
-        List<ShoppingDTO> shoppingDTOList = shoppingService.getAllShoppingList(mId,startDate,endDate);
-        model.addAttribute("shoppingList",shoppingDTOList);
-
-        return "/member/login/shopping";
+        session.setAttribute("delete", respStatus);
+        session.setAttribute("alert", true); //redirect 후 경고창(alert) 띄우기 여부 결정하는 값 저장
+        return view;
     }
 
     public String getCurrentDate() {

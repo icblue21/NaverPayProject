@@ -1,4 +1,3 @@
-DROP TABLE SHOPPING;
 
 CREATE TABLE SHOPPING (
                         mId VARCHAR(20) NOT NULL ,

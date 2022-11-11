@@ -38,6 +38,14 @@
 
 <main>
     <h1>Shopping List</h1>
+    <!--ShoppingDetailController 에서 주문 내역 삭제 후 경고창 띄우기-->
+    <c:if test="${sessionScope.alert == true}">
+        <script>
+            alert("해당 내역이 고객님의 결제현황에서 삭제되었습니다.");
+        </script>
+        ${sessionScope.alert = false}
+    </c:if>
+
     <div>
         <form method="post" action="/naver/pay">
             <div class="form__list">
