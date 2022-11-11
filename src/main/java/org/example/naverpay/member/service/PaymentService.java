@@ -25,7 +25,7 @@ public class PaymentService implements iPaymentService{
     }
 
     @Override
-    public boolean isOrderStatusRemoved(String sId) {
+    public boolean isPaymentInfoRemoved(String sId) {
         if (sId == null) {
             return false;
         }
