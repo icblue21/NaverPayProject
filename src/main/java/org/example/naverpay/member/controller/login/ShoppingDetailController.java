@@ -25,6 +25,7 @@ public class ShoppingDetailController {
     private SessionMgr sessionMgr;
     private PaymentService paymentService;
     private ShoppingService shoppingService;
+
     @Autowired
     public ShoppingDetailController(SessionMgr sessionMgr,
                                     PaymentService paymentService,
@@ -33,7 +34,6 @@ public class ShoppingDetailController {
         this.paymentService = paymentService;
         this.shoppingService = shoppingService;
     }
-
 
     @GetMapping(value = "/pay/detail/{sId}") // 결제 내역 화면 접근
     public String shoppingDetailPage(Locale locale, Model model, HttpServletRequest request, HttpSession session,
@@ -59,19 +59,19 @@ public class ShoppingDetailController {
 
         return "/member/login/shoppingDetail";
     }
-    @PostMapping("/pay")
-    public String deleteShoppingList(@RequestParam String sId, HttpServletRequest request, HttpSession session) {
+
+    @PostMapping("/pay/detail")
+    public String deleteShoppingDetailPage(@RequestParam String sId, HttpSession session) {
         String view = "/member/login/shoppingDetail";
         Status respStatus = Status.FAIL;
 
-        if (paymentService.isOrderStatusRemoved(sId)) {
+        if (paymentService.isPaymentInfoRemoved(sId)) {
             shoppingService.deleteShoppingList(sId);
-            view = "redirect:/members/shopping";
+            view = "redirect:/naver/pay";
             respStatus = Status.SUCCESS;
         }
 
-        session = request.getSession();
-        session.setAttribute("remove", respStatus);
+        session.setAttribute("delete", respStatus);
         session.setAttribute("alert", true); //redirect 후 경고창(alert) 띄우기 여부 결정하는 값 저장
         return view;
     }
