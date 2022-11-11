@@ -13,9 +13,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.List;
 import java.util.Locale;
 
 @Controller
@@ -74,23 +71,5 @@ public class ShoppingDetailController {
         session.setAttribute("delete", respStatus);
         session.setAttribute("alert", true); //redirect 후 경고창(alert) 띄우기 여부 결정하는 값 저장
         return view;
-    }
-
-    public String getCurrentDate() {
-
-        LocalDate now = LocalDate.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd");
-        String currentDate = now.format(formatter);
-
-        return currentDate;
-    }
-
-    public String getStartDate(){
-
-        LocalDate now = LocalDate.now().minusYears(2);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd");
-        String startDate = now.format(formatter);
-
-        return startDate;
     }
 }
