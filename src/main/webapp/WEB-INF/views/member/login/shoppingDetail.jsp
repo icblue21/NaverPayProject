@@ -39,7 +39,7 @@
         </div>
     </div>
     <div>
-        <form onsubmit="return askDelete()" method="post" action="/naver/pay">
+        <form onsubmit="return askDelete()" method="post" action="/naver/pay/detail">
             <script>
                 function askDelete() {
                     return confirm("삭제된 내역은 복구할 수 없습니다. 정말로 삭제하시겠습니까?");
